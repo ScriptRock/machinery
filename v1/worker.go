@@ -68,7 +68,7 @@ func (worker *Worker) LaunchAsync(errorsChan chan<- error) {
 				if worker.errorHandler != nil {
 					worker.errorHandler(err)
 				} else {
-					log.WARNING.Printf("Broker failed with error: %s", err)
+					log.ERROR.Printf("Broker failed with error: %s", err)
 				}
 			} else {
 				errorsChan <- err // stop the goroutine
