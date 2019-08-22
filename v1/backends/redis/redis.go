@@ -105,7 +105,7 @@ func (b *Backend) TriggerChord(groupUUID string) (bool, error) {
 	conn := b.open()
 	defer conn.Close()
 
-	m := b.redsync.NewMutex("TriggerChordMutex")
+	m := b.redsync.NewMutex("TriggerChordMutex-" + groupUUID)
 	if err := m.Lock(); err != nil {
 		return false, err
 	}
