@@ -125,6 +125,7 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 			default:
 				task, err := b.nextDelayedTask(redisDelayedTasksKey)
 				if err != nil {
+					log.ERROR.Printf("error from nextDelayedTask: %s", err)
 					continue
 				}
 
