@@ -124,7 +124,7 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 				return
 			default:
 				task, err := b.nextDelayedTask(redisDelayedTasksKey)
-				if err != nil {
+				if err != nil && err != redis.ErrNil {
 					log.ERROR.Printf("error from nextDelayedTask: %s", err)
 					continue
 				}
